@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import Sidebar from "@/components/sidebar";
 import "./globals.css";
 
 export const metadata = {
@@ -10,9 +10,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className='bg-secondary'
+        className='bg-secondary font-roboto'
       >
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
