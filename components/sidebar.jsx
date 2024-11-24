@@ -61,7 +61,7 @@ const list = [
 export default function Sidebar() {
     const pathname = usePathname()
     return (
-        <nav className="fixed left-0 h-full flex flex-col w-[250px] bg-white py-2 rounded-md px-2 text-accentdarken leading-tight">
+        <nav className="fixed left-0 top-0 h-full flex flex-col w-[250px] bg-white py-2 rounded-md px-2 text-accentdarken leading-tight">
                 <div className="flex gap-2 hover:bg-primary hover:text-white cursor-pointer rounded-sm p-2 text-sm">
                     <Image src="/logo.png" alt="logo" width={50} height={50} className="object-contain"/>
                     <div className="flex flex-col">

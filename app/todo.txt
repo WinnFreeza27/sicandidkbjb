@@ -1,2 +1,6 @@
-//make a rekening belanja page
-//later make a pre render for sidebar
+//make zod for form validation
+//make form to be reusable using custom props
+//make table to be reusable using custom props
+//refactor the rekening-belanja
+//split component
+//responsive
