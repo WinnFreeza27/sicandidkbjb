@@ -3,7 +3,7 @@
   import { Edit, Trash2 } from 'lucide-react'
   import React from "react"
 
-export default function TableRekeningForm ({tableData, handleEditRincian, handleDeleteRincian}) {
+export default function TableRekeningPopup ({tableData, handleEditRincian, handleDeleteRincian}) {
     return (
         <Table>
                   <TableHeader>
@@ -20,7 +20,7 @@ export default function TableRekeningForm ({tableData, handleEditRincian, handle
                   </TableHeader>
                   <TableBody>
                     {tableData.map((item) => (
-                      <React.Fragment key={item.uuid}>
+                      <React.Fragment key={item["kode-rekening"]}>
                         <TableRow>
                           <TableCell>{item["kode-rekening"]}</TableCell>
                           <TableCell className="min-w-8 max-w-24">{item["uraian"]}</TableCell>
@@ -38,7 +38,7 @@ export default function TableRekeningForm ({tableData, handleEditRincian, handle
                             <TableCell>{detail["volume"]}</TableCell>
                             <TableCell>{detail["satuan"]}</TableCell>
                             <TableCell>{parseInt(detail["harga-satuan"]).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
-                            <TableCell className="">{parseInt(detail["jumlah"])?.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
+                            <TableCell className="">{parseInt(detail["volume"] * detail["harga-satuan"])?.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
                             
                             <TableCell>
                               <div className="flex space-x-2">

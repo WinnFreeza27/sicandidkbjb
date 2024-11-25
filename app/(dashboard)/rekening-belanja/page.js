@@ -1,7 +1,7 @@
 "use client"
 import { Search } from "lucide-react";
-import AlertDialogDemo from "@/components/popup-form";
-import Pagination from "@/components/pagination";
+import RekeningPopup from "@/components/rekening-belanja/rekening-popup";
+import Pagination from "@/components/dynamic/pagination";
 import TabelRekening from "@/components/table";
 import {useState} from "react";
 
@@ -21,7 +21,7 @@ export default function Rekeningbelanja() {
             </div>
             <TabelRekening />
             <Pagination />
-            <AlertDialogDemo rekeningDialog={rekeningDialog} setRekeningDialog={setRekeningDialog}/>
+            <RekeningPopup rekeningDialog={rekeningDialog} setRekeningDialog={setRekeningDialog}/>
         </div>
     );
 }
