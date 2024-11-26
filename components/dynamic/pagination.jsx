@@ -7,6 +7,7 @@ export default function Pagination() {
         setPageNow(item)
     }
     const totalPage = 5
+
     return (
         <div className="flex justify-center">
             <div className="flex gap-2">

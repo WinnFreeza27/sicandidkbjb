@@ -19,19 +19,19 @@ export default function TableRekeningPopup ({tableData, handleEditRincian, handl
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {tableData.map((item) => (
-                      <React.Fragment key={item["kode-rekening"]}>
+                    
+                      <React.Fragment key={tableData["kode-rekening"]}>
                         <TableRow>
-                          <TableCell>{item["kode-rekening"]}</TableCell>
-                          <TableCell className="min-w-8 max-w-24">{item["uraian"]}</TableCell>
+                          <TableCell>{tableData["kode-rekening"]}</TableCell>
+                          <TableCell className="min-w-8 max-w-24">{tableData["uraian"]}</TableCell>
                           <TableCell></TableCell>
                           <TableCell></TableCell>
                           <TableCell></TableCell>
-                          <TableCell className="">{item["saldo"] == "" ? "Rp 0,00" : parseInt(item["saldo"]).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
+                          <TableCell className="">{tableData["saldo"] == "" ? "Rp 0,00" : parseInt(tableData["saldo"]).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
                           <TableCell></TableCell>
                           <TableCell></TableCell>
                         </TableRow>
-                        {item.details.map((detail) => (
+                        {tableData.details?.map((detail) => (
                           <TableRow key={detail.uuid}>
                             <TableCell></TableCell>
                             <TableCell>{detail["nama-rincian"]}</TableCell>
@@ -63,7 +63,6 @@ export default function TableRekeningPopup ({tableData, handleEditRincian, handl
                           </TableRow>
                         ))}
                       </React.Fragment>
-                    ))}
                   </TableBody>
                 </Table>
     )

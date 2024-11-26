@@ -21,12 +21,7 @@ export default function RekeningMainForm({setTableData, setEditingDetailIndex, s
       const updatedMainForm = { ...mainForm, ...data };
     
       setTableData((prevTableData) => {
-        // Ensure tableData[0] always reflects the latest mainForm
-        if (prevTableData.length === 0) {
-          return [{ ...updatedMainForm, details: [] }];
-        } else {
-          return [{ ...updatedMainForm, details: prevTableData[0].details }];
-        }
+          return { ...updatedMainForm, details: prevTableData.details };
       });
     };
 

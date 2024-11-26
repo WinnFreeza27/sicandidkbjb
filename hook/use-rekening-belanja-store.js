@@ -1,4 +1,4 @@
-import { rekeningBelanjaMainForm, rekeningBelanjaDetailForm } from "@/store/rekening-belanja-store";
+import { rekeningBelanjaMainForm, rekeningBelanjaDetailForm, rekeningBelanjaTable } from "@/store/rekening-belanja-store";
 
 export const useRekeningBelanjaMainForm = () => {
     const mainForm = rekeningBelanjaMainForm((state) => state.mainForm);
@@ -13,4 +13,11 @@ export const useRekeningBelanjaDetailForm = () => {
     const setDetailForm = rekeningBelanjaDetailForm((state) => state.setDetailForm);
     const clearDetailForm = rekeningBelanjaDetailForm((state) => state.clearDetailForm);
     return { detailForm, setDetailForm, clearDetailForm };
+}
+
+export const useRekeningBelanjaTable = () => {
+    const rekeningTable = rekeningBelanjaTable((state) => state.rekeningTable)
+    const setRekeningTable = rekeningBelanjaTable((state) => state.setRekeningTable)
+
+    return {rekeningTable, setRekeningTable}
 }

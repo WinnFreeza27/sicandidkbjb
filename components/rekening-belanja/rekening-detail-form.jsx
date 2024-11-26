@@ -36,11 +36,8 @@ import DynamicForm from "../dynamic/dynamic-form";
       };
       setTableData((prev) => {
         console.log(prev)
-        if (prev.length === 0) {
-          // If no tableData exists, initialize it
-          return [{ ...mainForm, details: [newDetail] }];
-        }
-        let updatedDetails = [...prev[0].details];
+  
+        let updatedDetails = [...prev.details];
         if (editingDetailIndex !== null) {
           // Update an existing rincian
            updatedDetails = updatedDetails.map((detail) => {
@@ -54,7 +51,7 @@ import DynamicForm from "../dynamic/dynamic-form";
           updatedDetails.unshift(newDetail);
         }
     
-        return [{ ...prev[0], details: updatedDetails }];
+        return { ...prev, details: updatedDetails };
       });
       setShowDetailDialog(false);
       clearDetailForm();

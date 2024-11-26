@@ -27,3 +27,8 @@ export const rekeningBelanjaDetailForm = create((set) => ({
     setDetailForm: (data) => set((state) => ({detailForm: { ...state.detailForm, ...data } })),    
     clearDetailForm: () => set(() => ({ detailForm: { uuid: null, "volume": "0", "satuan": "", "harga-satuan": "0", "nama-rincian": ""} })),
 }));
+
+export const rekeningBelanjaTable = create((set) => ({
+    rekeningTable: [],
+    setRekeningTable: (data) => set((state) => ({rekeningTable: [data, ...state.rekeningTable]}))
+}))

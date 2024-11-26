@@ -4,10 +4,12 @@ import RekeningPopup from "@/components/rekening-belanja/rekening-popup";
 import Pagination from "@/components/dynamic/pagination";
 import TabelRekening from "@/components/table";
 import {useState} from "react";
+import { useRekeningBelanjaTable } from "@/hook/use-rekening-belanja-store";
 
 export default function Rekeningbelanja() {  
 
   const [rekeningDialog, setRekeningDialog] = useState(false);
+  const {rekeningTable} = useRekeningBelanjaTable()
 
     return (
         <div className="mx-5 mt-5 bg-white p-5 text-accentdarken">
@@ -20,7 +22,7 @@ export default function Rekeningbelanja() {
                 <button type="submit" className="bg-accent text-white py-3 px-4 rounded-sm hover:bg-accentdarken transition-all" onClick={() => setRekeningDialog(true)}>Tambah Rekening</button>
             </div>
             <TabelRekening />
-            <Pagination />
+            <Pagination data={rekeningTable}/>
             <RekeningPopup rekeningDialog={rekeningDialog} setRekeningDialog={setRekeningDialog}/>
         </div>
     );

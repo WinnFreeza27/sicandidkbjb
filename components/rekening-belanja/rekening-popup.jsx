@@ -1,5 +1,6 @@
 import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogFooter } from "@/components/ui/alert-dialog"
 import { Separator } from "@radix-ui/react-separator";
+import { v4 as uuidv4 } from "uuid";
 import { X } from "lucide-react";
 import {useState, useRef} from "react";
 import { Save } from "lucide-react";
@@ -7,7 +8,7 @@ import { z } from "zod";
 import { register } from "zod-metadata";
 register(z);
 
-import {useRekeningBelanjaMainForm, useRekeningBelanjaDetailForm} from "@/hook/use-rekening-belanja-store";
+import {useRekeningBelanjaMainForm, useRekeningBelanjaDetailForm, useRekeningBelanjaTable} from "@/hook/use-rekening-belanja-store";
 import TableRekeningPopup from "./rekening-popup-table";
 import RekeningMainForm from "./rekening-main-form";
 import RekeningDetailForm from "./rekening-detail-form";
@@ -15,17 +16,18 @@ import RekeningDetailForm from "./rekening-detail-form";
 export default function RekeningPopup({rekeningDialog, setRekeningDialog}) {
 
     const resetMainFormRef = useRef(null);
+    const {rekeningTable, setRekeningTable} = useRekeningBelanjaTable()
     const {mainForm, clearMainForm, getMainForm} = useRekeningBelanjaMainForm();
     const {setDetailForm, clearDetailForm} = useRekeningBelanjaDetailForm();
-    const [tableData, setTableData] = useState([
+    const [tableData, setTableData] = useState(
       { ...mainForm, details: [] }, // Initialize with the mainForm values and empty details
-    ]);
+    );
     
     const [showDetailDialog, setShowDetailDialog] = useState(false);
     const [editingDetailIndex, setEditingDetailIndex] = useState(null);
     
     const handleEditRincian = (uuid) => {
-      const detailToEdit = tableData[0].details.find((detail) => detail.uuid === uuid);
+      const detailToEdit = tableData.details.find((detail) => detail.uuid === uuid);
       console.log(detailToEdit)
       setDetailForm({...detailToEdit});
       setEditingDetailIndex(uuid);
@@ -34,10 +36,8 @@ export default function RekeningPopup({rekeningDialog, setRekeningDialog}) {
     
     const handleDeleteRincian = (uuid) => {
       setTableData((prev) => {
-        if (prev.length === 0) return prev;
-    
-        const updatedDetails = prev[0].details.filter((detail) => detail.uuid !== uuid);
-        return [{ ...prev[0], details: updatedDetails }];
+        const updatedDetails = prev.details.filter((detail) => detail.uuid !== uuid);
+        return { ...prev, details: updatedDetails };
       });
     };
 
@@ -51,11 +51,11 @@ export default function RekeningPopup({rekeningDialog, setRekeningDialog}) {
         }
 
         const clearedMainForm = getMainForm();
-        console.log(clearedMainForm)
-        setTableData([{...clearedMainForm, details: []}])
-        console.log(data)
+        setTableData({...clearedMainForm, details: []})
+        setRekeningTable({...data, uuid: uuidv4()})
       }
       
+      console.log(rekeningTable)
   
     return (
       <>
