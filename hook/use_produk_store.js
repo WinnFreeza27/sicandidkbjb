@@ -16,7 +16,9 @@ export const useProdukForm = () => {
 
 export const useProdukTable = () => {
     const produkTable = produkTableStore((state) => state.produkTable)
-    const setProdukTable = produkTableStore((state) => state.setProdukTable)
+    const addProdukTable = produkTableStore((state) => state.setProdukTable)
+    const deleteProdukTable = produkTableStore((state) => state.deleteProdukTable)
+    const updateProdukTable = produkTableStore((state) => state.updateProdukTable)
 
-    return {produkTable, setProdukTable}
+    return {produkTable, addProdukTable, deleteProdukTable, updateProdukTable}
 }

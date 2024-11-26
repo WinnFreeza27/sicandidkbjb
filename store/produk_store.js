@@ -18,5 +18,7 @@ export const produkFormStore = create((set, get) => ({
 
 export const produkTableStore = create((set) => ({
     produkTable: [],
-    setProdukTable: (data) => set((state) => ({produkTable: [data, ...state.produkTable]}))
+    addProdukTable: (data) => set((state) => ({produkTable: [data, ...state.produkTable]})),
+    updateProdukTable: (data) => set((state) => ({produkTable: state.produkTable.map((item) => (item.kode_barang === data.kode_barang ? data : item))})),
+    deleteProdukTable: (data) => set((state) => ({produkTable: state.produkTable.filter((item) => item.kode_barang !== data)})),
 }))

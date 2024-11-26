@@ -20,8 +20,6 @@ export default function Produk() {
         setProdukForm(dataToEdit)
     }
 
-    const handleDelete()
-
     return (
         <div className="mx-5 mt-5 bg-white p-5 text-accentdarken">
             <div className="flex flex-col xl:flex-row gap-5 justify-between">
@@ -136,7 +134,9 @@ export function ProdukPopup({produkDialog, setProdukDialog, editIndex, setEditIn
     const resetProdukFormRef = useRef(null);
 
     const handleForm = (data) => {
-        console.log(data)
+        if(editIndex) {
+            
+        }
         setProdukDialog(false)
         clearProdukForm()
         if (resetProdukFormRef.current) {
