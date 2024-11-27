@@ -4,6 +4,7 @@
   import React from "react"
 
 export default function TableRekeningPopup ({tableData, handleEditRincian, handleDeleteRincian}) {
+  console.log(tableData)
     return (
         <Table>
                   <TableHeader>
@@ -20,25 +21,25 @@ export default function TableRekeningPopup ({tableData, handleEditRincian, handl
                   </TableHeader>
                   <TableBody>
                     
-                      <React.Fragment key={tableData["kode-rekening"]}>
+                      <React.Fragment key={tableData.kode_rekening}>
                         <TableRow>
-                          <TableCell>{tableData["kode-rekening"]}</TableCell>
-                          <TableCell className="min-w-8 max-w-24">{tableData["uraian"]}</TableCell>
+                          <TableCell>{tableData.kode_rekening}</TableCell>
+                          <TableCell className="min-w-8 max-w-24">{tableData.uraian}</TableCell>
                           <TableCell></TableCell>
                           <TableCell></TableCell>
                           <TableCell></TableCell>
-                          <TableCell className="">{tableData["saldo"] == "" ? "Rp 0,00" : parseInt(tableData["saldo"]).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
+                          <TableCell className="">{tableData.saldo == "" ? "Rp 0,00" : parseInt(tableData.saldo).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
                           <TableCell></TableCell>
                           <TableCell></TableCell>
                         </TableRow>
                         {tableData.details?.map((detail) => (
                           <TableRow key={detail.uuid}>
                             <TableCell></TableCell>
-                            <TableCell>{detail["nama-rincian"]}</TableCell>
-                            <TableCell>{detail["volume"]}</TableCell>
-                            <TableCell>{detail["satuan"]}</TableCell>
-                            <TableCell>{parseInt(detail["harga-satuan"]).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
-                            <TableCell className="">{parseInt(detail["volume"] * detail["harga-satuan"])?.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
+                            <TableCell>{detail.nama_rincian}</TableCell>
+                            <TableCell>{detail.volume}</TableCell>
+                            <TableCell>{detail.satuan}</TableCell>
+                            <TableCell>{parseInt(detail.harga_satuan).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
+                            <TableCell className="">{parseInt(detail.volume * detail.harga_satuan)?.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</TableCell>
                             
                             <TableCell>
                               <div className="flex space-x-2">

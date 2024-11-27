@@ -18,7 +18,26 @@ export const produkFormStore = create((set, get) => ({
 
 export const produkTableStore = create((set) => ({
     produkTable: [],
-    addProdukTable: (data) => set((state) => ({produkTable: [data, ...state.produkTable]})),
-    updateProdukTable: (data) => set((state) => ({produkTable: state.produkTable.map((item) => (item.kode_barang === data.kode_barang ? data : item))})),
-    deleteProdukTable: (data) => set((state) => ({produkTable: state.produkTable.filter((item) => item.kode_barang !== data)})),
+    produkPagination: { page: 1, limit: 2, total: 0 },
+    addProdukTable: (data) => set((state) => {
+        const updatedData = [data, ...state.produkTable]
+        return {produkTable: updatedData,
+                produkPagination: { ...state.produkPagination, total: updatedData.length }
+        }
+    }),
+    updateProdukTable: (id, data) => set((state) => {
+        const updatedData = state.produkTable.map((item) => (item.uuid === id ? data : item))
+        return {produkTable: updatedData,
+                produkPagination: { ...state.produkPagination, total: updatedData.length }
+        }
+    }),
+    deleteProdukTable: (id) => set((state) => {
+        const updatedData = state.produkTable.filter((item) => item.uuid !== id)
+        return {produkTable: updatedData,
+                produkPagination: { ...state.produkPagination, total: updatedData.length }
+        }
+    }),
+    setProdukPagination: (data) => set((state) => ({ produkPagination: { ...state.produkPagination, ...data } })),
+    searchQuery: "",
+    setSearchQuery: (query) => set({ searchQuery: query }),
 }))

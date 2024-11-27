@@ -7,7 +7,7 @@ import DynamicForm from "../dynamic/dynamic-form";
 
 export default function RekeningMainForm({setTableData, setEditingDetailIndex, setShowDetailDialog, resetRef}) {
     const schema = z.object({
-      "kode-rekening": z.string().min(1, "Kode Rekening is required").meta({label: "Kode Rekening", type: "text", placeholder: "Masukkan Kode Rekening"}),
+      "kode_rekening": z.string().min(1, "Kode Rekening is required").meta({label: "Kode Rekening", type: "text", placeholder: "Masukkan Kode Rekening"}),
       "uraian": z.string().min(1, "Uraian is required").meta({label: "Uraian", type: "text", placeholder: "Masukkan Uraian"}),
       "saldo": z.string("Must be a number").min(0, "Must be a positive number").
                 regex(/^\d+$/, "Saldo must be a valid number").transform((val) => parseInt(val)).

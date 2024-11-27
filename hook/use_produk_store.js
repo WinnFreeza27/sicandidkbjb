@@ -16,9 +16,13 @@ export const useProdukForm = () => {
 
 export const useProdukTable = () => {
     const produkTable = produkTableStore((state) => state.produkTable)
-    const addProdukTable = produkTableStore((state) => state.setProdukTable)
+    const addProdukTable = produkTableStore((state) => state.addProdukTable)
     const deleteProdukTable = produkTableStore((state) => state.deleteProdukTable)
     const updateProdukTable = produkTableStore((state) => state.updateProdukTable)
+    const produkPagination = produkTableStore((state) => state.produkPagination)
+    const setProdukPagination = produkTableStore((state) => state.setProdukPagination)
+    const searchQuery = produkTableStore((state) => state.searchQuery)
+    const setSearchQuery = produkTableStore((state) => state.setSearchQuery)
 
-    return {produkTable, addProdukTable, deleteProdukTable, updateProdukTable}
+    return {produkTable, addProdukTable, deleteProdukTable, updateProdukTable, produkPagination, setProdukPagination, searchQuery, setSearchQuery}
 }

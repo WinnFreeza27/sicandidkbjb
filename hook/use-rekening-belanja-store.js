@@ -18,6 +18,10 @@ export const useRekeningBelanjaDetailForm = () => {
 export const useRekeningBelanjaTable = () => {
     const rekeningTable = rekeningBelanjaTable((state) => state.rekeningTable)
     const setRekeningTable = rekeningBelanjaTable((state) => state.setRekeningTable)
+    const rekeningPagination = rekeningBelanjaTable((state) => state.rekeningPagination)
+    const setRekeningPagination = rekeningBelanjaTable((state) => state.setRekeningPagination)
+    const searchQuery = rekeningBelanjaTable((state) => state.searchQuery)
+    const setSearchQuery = rekeningBelanjaTable((state) => state.setSearchQuery)
 
-    return {rekeningTable, setRekeningTable}
+    return {rekeningTable, setRekeningTable, rekeningPagination, setRekeningPagination, searchQuery, setSearchQuery}
 }

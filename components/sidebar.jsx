@@ -32,6 +32,14 @@ const list = [
                 </svg>
     },
     {
+        name: "Penerimaan",
+        id:"penerimaan",
+        path: "/penerimaan",
+        icon:   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 13.5H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                </svg>
+    },
+    {
         name:"Pengeluaran",
         id:"pengeluaran",
         path: "/pengeluaran",
@@ -58,7 +66,7 @@ const list = [
     }
 ]
 
-export default function Sidebar() {
+export default function NavigationSidebar() {
     const pathname = usePathname()
     return (
         <nav className="fixed left-0 top-0 h-full flex flex-col w-[250px] bg-white py-2 rounded-md px-2 text-accentdarken leading-tight">

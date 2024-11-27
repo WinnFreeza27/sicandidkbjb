@@ -6,12 +6,12 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-import { useRekeningBelanjaTable } from "@/hook/use-rekening-belanja-store"
 
   import React from "react"
   import {useState} from "react"
 
-  export default function TabelRekening() {
+  export default function TabelRekening({data}) {
+
     const [isOpen, setIsOpen] = useState([])
 
     const handleOpen = (index) => {
@@ -21,24 +21,15 @@ import { useRekeningBelanjaTable } from "@/hook/use-rekening-belanja-store"
             setIsOpen( x => [...x, index])
         }
     }
-    
-    const {rekeningTable} = useRekeningBelanjaTable()
-
-    const data = rekeningTable.map((item) => {
-      return {...item, details:  item.details.map((detail) => {
-        return {
-          ...detail,
-          jumlah: detail["harga-satuan"] * detail.volume
-        }
-      })
-    }
-    })
 
     console.log(data)
           
-  
+    
     return (
         <div className="mx-auto py-10">
+        {data.length == 0 ? (
+            <div className="text-center">Tidak Ada Data</div>
+        ) : (
           <Table>
             <TableHeader>
               <TableRow>
@@ -54,11 +45,11 @@ import { useRekeningBelanjaTable } from "@/hook/use-rekening-belanja-store"
             </TableHeader>
             <TableBody>
               {data.map((item, index) => (
-                <React.Fragment key={Math.floor(Math.random() * 99999)}>
+                <React.Fragment key={item.uuid}>
                   {/* Parent Row */}
-                  <TableRow className={`${isOpen.includes(item.uuid) ? "bg-primary text-white" : "bg-secondary/40"} hover:bg-primary hover:text-white cursor-pointer h-[70px]`} onClick={() => handleOpen(item.uuid)}>
+                  <TableRow className={`${isOpen.includes(item.uuid) ? "bg-primary text-white" : "bg-secondary/40"} ${item.details.length > 0 ? "hover:bg-primary hover:text-white cursor-pointer" : ""} h-[70px]`} onClick={() => handleOpen(item.uuid)}>
                     <TableCell className="font-medium text-center">{index + 1}</TableCell>
-                    <TableCell>{item.kodeRekening}</TableCell>
+                    <TableCell>{item.kode_rekening}</TableCell>
                     <TableCell className="min-w-8">{item.uraian}</TableCell>
                     <TableCell className="">{item.volume}</TableCell>
                     <TableCell>{item.satuan}</TableCell>
@@ -91,11 +82,11 @@ import { useRekeningBelanjaTable } from "@/hook/use-rekening-belanja-store"
                       <TableRow key={Math.floor(Math.random() * 54321)} className="bg-white">
                         <TableCell />
                         <TableCell />
-                        <TableCell>{detail["nama-rincian"]}</TableCell>
+                        <TableCell>{detail.nama_rincian}</TableCell>
                         <TableCell>{detail.volume}</TableCell>
                         <TableCell>{detail.satuan}</TableCell>
                         <TableCell className="">
-                          {detail["harga-satuan"].toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
+                          {detail.harga_satuan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
                         </TableCell>
                         <TableCell className="">
                           {detail.jumlah.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
@@ -106,6 +97,7 @@ import { useRekeningBelanjaTable } from "@/hook/use-rekening-belanja-store"
               ))}
             </TableBody>
           </Table>
+        )}
         </div>
       )
 }

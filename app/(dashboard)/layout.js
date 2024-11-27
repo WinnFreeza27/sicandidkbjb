@@ -1,9 +1,9 @@
-import Sidebar from "@/components/Sidebar";
+import NavigationSidebar from "@/components/Sidebar";
 
 export default function DashboardGroupLayout({ children }) {
   return (
     <div className="dashboard-group-layout">
-      <Sidebar />
+      <NavigationSidebar />
       <main className="ml-[250px]">{children}</main>
     </div>
   );

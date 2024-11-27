@@ -9,9 +9,9 @@ import { register } from "zod-metadata";
 register(z);
 
 import {useRekeningBelanjaMainForm, useRekeningBelanjaDetailForm, useRekeningBelanjaTable} from "@/hook/use-rekening-belanja-store";
-import TableRekeningPopup from "./rekening-popup-table";
-import RekeningMainForm from "./rekening-main-form";
-import RekeningDetailForm from "./rekening-detail-form";
+import TableRekeningPopup from "./rekening_popup_table";
+import RekeningMainForm from "./rekening_main_form";
+import RekeningDetailForm from "./rekening_detail_form";
 
 export default function RekeningPopup({rekeningDialog, setRekeningDialog}) {
 

@@ -14,13 +14,13 @@ import DynamicForm from "../dynamic/dynamic-form";
   export default function RekeningDetailForm({setTableData, editingDetailIndex, setShowDetailDialog, setEditingDetailIndex}) {
 
     const schema = z.object({
-      "nama-rincian": z.string().min(1, "Nama Rincian is required").meta({label: "Nama Rincian", type: "text", placeholder: "Masukkan Nama Rincian"}),
+      "nama_rincian": z.string().min(1, "Nama Rincian is required").meta({label: "Nama Rincian", type: "text", placeholder: "Masukkan Nama Rincian"}),
       "volume": z.string("Must be a number").min(0, "Must be a positive number").
                 regex(/^\d+$/, "Volume must be a valid number").transform((val) => parseInt(val)).
                 meta({label: "Volume", type: "number", placeholder: "Masukkan Volume"}),
       "satuan": z.string().min(1, "Satuan is required").
                 meta({label: "Satuan", type: "select", placeholder: "Pilih Satuan", selectOptions: ["Paket", "Kotak", "Buah", "Pcs", "Lusin", "Lembar", "Meter"]}),
-      "harga-satuan": z.string("Must be a number").min(0, "Must be a positive number").
+      "harga_satuan": z.string("Must be a number").min(0, "Must be a positive number").
                 regex(/^\d+$/, "Harga Satuan must be a valid number").transform((val) => parseInt(val)).
                 meta({label: "Harga Satuan", type: "number", placeholder: "Masukkan Harga Satuan"}),
     })
@@ -33,6 +33,7 @@ import DynamicForm from "../dynamic/dynamic-form";
       const newDetail = {
         ...data,
         uuid: uuidv4(),
+        jumlah: data.volume * data.harga_satuan
       };
       setTableData((prev) => {
         console.log(prev)
@@ -75,7 +76,7 @@ import DynamicForm from "../dynamic/dynamic-form";
                         className="py-2 flex-1 rounded px-2 outline-none border border-primary bg-gray-100"
                         type="text"
                         readOnly
-                        value={mainForm["kode-rekening"]}
+                        value={mainForm.kode_rekening}
                       />
                     </div>
                   </label>
@@ -88,7 +89,7 @@ import DynamicForm from "../dynamic/dynamic-form";
                       className="py-2 flex-1 rounded px-2 outline-none border border-primary bg-gray-100"
                       type="text"
                       readOnly
-                      value={mainForm["uraian"]}
+                      value={mainForm.uraian}
                     />
                     </div>
                   </label>
