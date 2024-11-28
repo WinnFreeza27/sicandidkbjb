@@ -29,6 +29,7 @@ export default function DynamicForm({
   const resetTriggeredRef = useRef(false);
 
   const onSubmit = useCallback(() => {
+    console.log('submit')
     handleForm(formValue);
   }, [formValue]);
 
@@ -89,7 +90,7 @@ export default function DynamicForm({
         error={errors[key]}
       />
     ));
-
+    console.log(formValue)
   return (
     <>
       {renderFormFields()}

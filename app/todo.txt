@@ -1,6 +1,1 @@
-//make zod for form validation
-//make form to be reusable using custom props
-//make table to be reusable using custom props
-//refactor the rekening-belanja
-//split component
-//responsive
+//make penerimaan page have all the form make sure schema is similiar.
