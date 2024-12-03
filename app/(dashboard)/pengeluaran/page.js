@@ -42,7 +42,7 @@ export default function Pengeluaran() {
     return (
         <div className="mx-5 mt-5 bg-white p-5 text-accentdarken">
             <div className="flex flex-col xl:flex-row gap-5 justify-between">
-                <h1 className="text-2xl">Penerimaan</h1>
+                <h1 className="text-2xl">Pengeluaran</h1>
                 <DynamicSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
                 <button type="submit" className="bg-accent text-white py-3 px-4 rounded-sm hover:bg-accentdarken transition-all" onClick={handleTambahProduk}>Tambah Pengeluaran</button>
             </div>
