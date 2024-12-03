@@ -60,7 +60,7 @@ Selamat datang di **Sicandi**, aplikasi pencatatan digital persediaan yang memud
   - **Produk**
   - **Volume**
   - **Tanggal**
-  - Pilih **Produk** dan isi jumlah barang diterima (**Volume**).
+  - isi jumlah barang diterima (**Volume**).
 - Klik **Simpan**.
 
 ### **6. Input Pengeluaran Barang**
