@@ -9,7 +9,7 @@ Selamat datang di **Sicandi**, aplikasi pencatatan digital persediaan yang memud
 ## **Fitur Utama**
 1. **Login Pengguna**: Akses aplikasi dengan akun terdaftar.
 2. **Input Rekening Belanja**: Buat rekening belanja untuk mencatat alokasi anggaran.
-3. **Tambah Rincian Rekening Belanja**: Masukkan rincian pengeluaran terkait rekening belanja.
+3. **Tambah Rincian Rekening Belanja**: Masukkan rincian terkait rekening belanja.
 4. **Input Produk**: Tambahkan data produk yang tersedia di gudang.
 5. **Input Penerimaan Barang**: Catat barang yang diterima ke dalam stok.
 6. **Input Pengeluaran Barang**: Rekam barang yang dikeluarkan dari stok berdasarkan ketersediaan.
@@ -82,4 +82,5 @@ Selamat datang di **Sicandi**, aplikasi pencatatan digital persediaan yang memud
 ## **Catatan**
 - Pastikan data yang dimasukkan sesuai dengan kondisi sebenarnya.
 - Laporkan jika terjadi kesalahan data ke admin sistem.
+
 
