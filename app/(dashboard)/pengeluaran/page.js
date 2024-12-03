@@ -44,7 +44,7 @@ export default function Pengeluaran() {
             <div className="flex flex-col xl:flex-row gap-5 justify-between">
                 <h1 className="text-2xl">Penerimaan</h1>
                 <DynamicSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-                <button type="submit" className="bg-accent text-white py-3 px-4 rounded-sm hover:bg-accentdarken transition-all" onClick={handleTambahProduk}>Tambah Penerimaan</button>
+                <button type="submit" className="bg-accent text-white py-3 px-4 rounded-sm hover:bg-accentdarken transition-all" onClick={handleTambahProduk}>Tambah Pengeluaran</button>
             </div>
             <PenerimaanTable tableData={paginatedData}/>
             <Pagination paginationData={pengeluaranPagination} setPaginationData={setPengeluaranPagination}/>
@@ -252,7 +252,7 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
               <AlertDialogContent className="bg-white text-accentdarken">
                   <AlertDialogHeader>
                       <AlertDialogTitle className="mx-auto mb-5">
-                          {editIndex ? "Edit Produk" : "Tambah Penerimaan"}
+                          {editIndex ? "Edit Produk" : "Tambah Pengeluaran"}
                       </AlertDialogTitle>
                       <X
                           className="absolute cursor-pointer right-3 top-3"
