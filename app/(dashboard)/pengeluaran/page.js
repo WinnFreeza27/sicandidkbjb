@@ -252,7 +252,7 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
               <AlertDialogContent className="bg-white text-accentdarken">
                   <AlertDialogHeader>
                       <AlertDialogTitle className="mx-auto mb-5">
-                          {editIndex ? "Edit Produk" : "Tambah Pengeluaran"}
+                          {editIndex ? "Edit Pengeluaran" : "Tambah Pengeluaran"}
                       </AlertDialogTitle>
                       <X
                           className="absolute cursor-pointer right-3 top-3"
