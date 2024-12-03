@@ -29,35 +29,37 @@ Selamat datang di **Sicandi**, aplikasi pencatatan digital persediaan yang memud
 - Klik tombol **Tambah Rekening**.
 - Isi formulir:
   - **Nama Rekening**
-  - **Deskripsi Rekening**
+  - **Kode Rekening**
   - **Jumlah Anggaran**
-- Klik **Simpan**.
 
 ### **3. Tambah Rincian Rekening Belanja**
 - Pilih rekening belanja yang ingin diperbarui.
 - Klik tombol **Tambah Rincian**.
 - Isi data rincian:
-  - **Jenis Pengeluaran**
-  - **Jumlah**
-  - **Tanggal**
+  - **Nama Rincian**
+  - **Volume**
+  - - **Harga Satuan**
 - Klik **Simpan**.
+- - Klik **Simpan**.
 
 ### **4. Input Produk**
 - Masuk ke menu **Produk**.
 - Klik tombol **Tambah Produk**.
 - Isi informasi produk:
   - **Nama Produk**
-  - **Kategori**
+  - **Kode Barang**
   - **Harga Satuan**
-  - **Stok Awal**
 - Klik **Simpan**.
 
 ### **5. Input Penerimaan Barang**
 - Navigasikan ke menu **Penerimaan**.
 - Klik tombol **Tambah Penerimaan**.
 - Isi data penerimaan:
-  - **Nomor Referensi**
-  - **Tanggal Penerimaan**
+  - **Rekening Belanja**
+  - **Rincian**
+  - **Produk**
+  - **Volume**
+  - **Tanggal**
   - Pilih **Produk** dan isi jumlah barang diterima (**Volume**).
 - Klik **Simpan**.
 
@@ -65,9 +67,9 @@ Selamat datang di **Sicandi**, aplikasi pencatatan digital persediaan yang memud
 - Masuk ke menu **Pengeluaran**.
 - Klik tombol **Tambah Pengeluaran**.
 - Isi data pengeluaran:
-  - **Nomor Referensi**
+  - **Pilih Stock**
   - **Tanggal Pengeluaran**
-  - Pilih **Produk** dan isi jumlah barang yang dikeluarkan (**Volume**).
+  - isi jumlah barang yang dikeluarkan (**Volume**).
 - Klik **Simpan**.
 
 ### **7. Unduh Laporan**
