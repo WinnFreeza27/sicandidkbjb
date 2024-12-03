@@ -29,14 +29,12 @@ import DynamicForm from "../dynamic/dynamic-form";
     const {mainForm} = useRekeningBelanjaMainForm();
     
     const handleSimpanRincian = (data) => {
-      console.log(data)
       const newDetail = {
         ...data,
         uuid: uuidv4(),
         jumlah: data.volume * data.harga_satuan
       };
       setTableData((prev) => {
-        console.log(prev)
   
         let updatedDetails = [...prev.details];
         if (editingDetailIndex !== null) {
@@ -68,7 +66,7 @@ import DynamicForm from "../dynamic/dynamic-form";
               <div>
                 <form className="flex flex-col gap-4">
                   <label htmlFor="detail-kode-rekening" className="flex items-center gap-3">
-                    <span className="whitespace-nowrap w-32">Kode Rekening</span>
+                    <span className="whitespace-nowrap w-40">Kode Rekening</span>
                     <span>:</span>
                     <div className="flex flex-col w-full">
                       <input
@@ -81,7 +79,7 @@ import DynamicForm from "../dynamic/dynamic-form";
                     </div>
                   </label>
                   <label htmlFor="detail-uraian" className="flex items-center gap-3">
-                    <span className="whitespace-nowrap w-32">Uraian</span>
+                    <span className="whitespace-nowrap w-40">Uraian</span>
                     <span>:</span>
                     <div className="flex flex-col w-full">
                     <input

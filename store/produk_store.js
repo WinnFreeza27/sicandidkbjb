@@ -9,7 +9,7 @@ export const produkFormStore = create((set, get) => ({
     setProdukForm: (data) => set((state) => ({ produkForm: { ...state.produkForm, ...data } })),
     clearProdukForm: () =>
         set(() => ({
-            produkForm: { nama_produk: {},
+            produkForm: { nama_produk: "",
                         kode_barang: "",
                         harga: ""}
         })),
@@ -18,7 +18,7 @@ export const produkFormStore = create((set, get) => ({
 
 export const produkTableStore = create((set) => ({
     produkTable: [],
-    produkPagination: { page: 1, limit: 2, total: 0 },
+    produkPagination: { page: 1, limit: 5, total: 0 },
     addProdukTable: (data) => set((state) => {
         const updatedData = [data, ...state.produkTable]
         return {produkTable: updatedData,

@@ -2,7 +2,7 @@ import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, A
 import { Separator } from "@radix-ui/react-separator";
 import { v4 as uuidv4 } from "uuid";
 import { X } from "lucide-react";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import { Save } from "lucide-react";
 import { z } from "zod";
 import { register } from "zod-metadata";
@@ -20,15 +20,18 @@ export default function RekeningPopup({rekeningDialog, setRekeningDialog}) {
     const {mainForm, clearMainForm, getMainForm} = useRekeningBelanjaMainForm();
     const {setDetailForm, clearDetailForm} = useRekeningBelanjaDetailForm();
     const [tableData, setTableData] = useState(
-      { ...mainForm, details: [] }, // Initialize with the mainForm values and empty details
+      { ...mainForm, details: [] },
     );
     
+    useEffect(() => {
+      setTableData({ ...mainForm, details: tableData.details || [] });
+    } , [mainForm]);
+
     const [showDetailDialog, setShowDetailDialog] = useState(false);
     const [editingDetailIndex, setEditingDetailIndex] = useState(null);
     
     const handleEditRincian = (uuid) => {
       const detailToEdit = tableData.details.find((detail) => detail.uuid === uuid);
-      console.log(detailToEdit)
       setDetailForm({...detailToEdit});
       setEditingDetailIndex(uuid);
       setShowDetailDialog(true);
@@ -55,7 +58,6 @@ export default function RekeningPopup({rekeningDialog, setRekeningDialog}) {
         setRekeningTable({...data, uuid: uuidv4()})
       }
       
-      console.log(rekeningTable)
   
     return (
       <>

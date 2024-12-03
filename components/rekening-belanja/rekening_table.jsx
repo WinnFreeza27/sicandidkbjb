@@ -21,8 +21,6 @@ import {
             setIsOpen( x => [...x, index])
         }
     }
-
-    console.log(data)
           
     
     return (

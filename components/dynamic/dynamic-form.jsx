@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { debounce, isEqual, omit } from "lodash";
 import FormField from "../form-field";
 
@@ -25,11 +25,12 @@ export default function DynamicForm({
     defaultValues: formData,
   });
 
+  const [activeField, setActiveField] = useState(null); // for the input type form/table
+
   const formValue = watch();
   const resetTriggeredRef = useRef(false);
 
   const onSubmit = useCallback(() => {
-    console.log('submit')
     handleForm(formValue);
   }, [formValue]);
 
@@ -85,12 +86,13 @@ export default function DynamicForm({
         fieldSchema={schema.shape[key]}
         register={register}
         setValue={setValue}
-        formData={formData}
+        formData={formValue}
         onDataChange={onDataChange}
         error={errors[key]}
+        activeField={activeField}
+        setActiveField={setActiveField}
       />
     ));
-    console.log(formValue)
   return (
     <>
       {renderFormFields()}

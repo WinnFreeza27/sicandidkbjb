@@ -8,8 +8,6 @@ export default function Pagination({paginationData, setPaginationData}) {
         setPaginationData({page: item})
     }
 
-    console.log(paginationData)
-
     const totalPage = Math.ceil(paginationData.total / paginationData.limit)
 
     return (

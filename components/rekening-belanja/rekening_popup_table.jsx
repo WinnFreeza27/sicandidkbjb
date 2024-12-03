@@ -4,7 +4,6 @@
   import React from "react"
 
 export default function TableRekeningPopup ({tableData, handleEditRincian, handleDeleteRincian}) {
-  console.log(tableData)
     return (
         <Table>
                   <TableHeader>

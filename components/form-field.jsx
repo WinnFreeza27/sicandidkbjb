@@ -1,13 +1,13 @@
 import { Search } from "lucide-react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
-import {useState } from "react";
+import {useState,useEffect } from "react";
 import DynamicSearch from "./dynamic/search";
 import { deepSearch } from "@/utils/search_and_filter";
-import { set } from "lodash";
-export default function FormField({ fieldKey, fieldSchema, register, setValue, formData, onDataChange, error }) {
-    const { label, type, placeholder, selectOptions, forms } = fieldSchema._def.meta;
-    console.log(error)
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "./ui/alert-dialog";
+import { X } from "lucide-react";
+export default function FormField({ fieldKey, fieldSchema, register, setValue, formData, onDataChange, error, activeField, setActiveField, }) {
+    const { label, type, placeholder, selectOptions, forms, value } = fieldSchema._def.meta;
     const handleChange = (value) => {
       setValue(fieldKey, value);
       if (onDataChange) onDataChange({ ...formData, [fieldKey]: value });
@@ -15,96 +15,137 @@ export default function FormField({ fieldKey, fieldSchema, register, setValue, f
     
 
     //type === "form"
-    const [showTable, setShowTable] = useState(false); // Controls whether the table is visible
-    const [selectedValue, setSelectedValue] = useState("");
-    const [searchQuery, setSearchQuery] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const formSearchedData = deepSearch(forms.data, searchQuery)
+  const filteredData = deepSearch(forms?.data || [], searchQuery);
 
-    const handleRowClick = (data) => {
-      // Format the selected row's data
-      const formattedValue = `[${data.nama_produk}] [${data.kode_produk}] [${parseInt(data.harga).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}]`;
-  
-      // Update the input field with the formatted value
-      setSelectedValue(formattedValue);
-  
-      // Set the raw data object to the form value
-      setValue(fieldKey, data); // Set the value to the selected row's data object
-      if (onDataChange) onDataChange({ ...formData, [fieldKey]: data });
-      setSearchQuery('')
-      setShowTable(false); // Hide the table after selection
-    };
-  
-    if (type === "form") {
-      return (
-        <div className="flex flex-col gap-4">
-          {/* Input Field with Search */}
-          {!showTable && (
-            <label htmlFor={fieldKey} className="flex items-center gap-3">
-              <span className="whitespace-nowrap w-32">{label}</span>
+  const handleRowClick = (data) => {
+    const formattedValue = forms.name
+      .map((key) => `[${data[key]}]`)
+      .join(" ");
+    setSelectedValue(formattedValue);
+
+    setValue(fieldKey, data);
+    if (onDataChange) onDataChange({ ...formData, [fieldKey]: data });
+
+    setSearchQuery("");
+    setIsDialogOpen(false);
+  };
+
+  const isEmpty = forms?.data.length === 0
+
+  if (type === "form") {
+    return (
+      <div className="flex flex-col gap-2">
+        <label htmlFor={fieldKey} className="flex items-center gap-3">
+          <span className="whitespace-nowrap w-40">{label}</span>
+          <span>:</span>
+            <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <AlertDialogTrigger asChild>
               <div className="flex flex-col w-full">
-              <div className="flex items-center border border-primary rounded w-full">
                 <input
                   id={fieldKey}
                   type="text"
-                  value={selectedValue} // Show the formatted value
-                  readOnly // Make the input readonly to prevent manual editing
+                  value={selectedValue}
+                  readOnly
                   placeholder={placeholder}
-                  className="flex-1 py-2 px-3 outline-none"
-                  onFocus={() => setShowTable(true)} // Show the table when input is focused
+                  className={`py-2 flex-1 rounded px-2 outline-none border border-primary cursor-pointer`}
+                  onClick={() => setIsDialogOpen(true)}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowTable(true)} // Show the table when the icon is clicked
-                  className="p-2 hover:bg-gray-100"
-                >
-                  <Search size={20} />
-                </button>
-              </div>
-              {error && <span className="text-red-500 text-sm">{error.message}</span>}
-              </div>
-            </label>
-          )}
-  
-          {/* Table for Selecting Data */}
-          {showTable && (
-            <div className="w-full flex flex-col items-center justify-center gap-4">
-              <DynamicSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-            
-            <Table>
-            
-              <TableHeader>
-                <TableRow>
-                  {forms.label.map((header) => (
-                    <TableHead key={header}>{header}</TableHead>
-                  ))}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {formSearchedData?.map((item, index) => (
-                  <TableRow
-                    key={index}
-                    className="cursor-pointer hover:bg-gray-200"
-                    onClick={() => handleRowClick(item)}
-                  >
-                    {forms.name.map((key) => (
-                      <TableCell key={`${index}-${key}`}>{item[key]}</TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            </div>
-          )}
+                {error?.message && <span className="text-red-500 text-sm">{error.message}</span>}
+                </div>
+              </AlertDialogTrigger>
+
+              <AlertDialogContent className="w-full flex flex-col items-center justify-center text-center">
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-center">{label}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Pilih Item Dari Tabel Dibawah
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+
+                <DynamicSearch
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                />
+
+                <div className="overflow-y-auto w-full mt-4">
+                <X className="absolute top-4 right-4 cursor-pointer" onClick={() => setIsDialogOpen(false)}/>
+                {isEmpty ? <div className="text-center w-full items-center">Tidak Ada Data Tersedia...</div> : (
+
+                  <Table className="w-full text-left">
+                    <TableHeader>
+                      <TableRow>
+                        {forms.label.map((header) => (
+                          <TableHead
+                            key={header}
+                            className="border-b py-2 px-4"
+                          >
+                            {header}
+                          </TableHead>
+                        ))}
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                    
+                      {filteredData.map((item, index) => (
+                        <TableRow
+                          key={index}
+                          className="cursor-pointer hover:bg-gray-100"
+                          onClick={() => handleRowClick(item)}
+                        >
+                          {forms.name.map((key) => (
+                            <TableCell key={`${index}-${key}`} className="py-2 px-4">
+                              {item[key]}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                )}
+                  
+                </div>
+              </AlertDialogContent>
+            </AlertDialog>
+        </label>
+      </div>
+    );
+  }
+
+  if (type === "disabled") {
+    useEffect(() => {
+      handleChange(value); // This will only run when `value` changes
+    }, [value]);
+    return (
+      <label htmlFor={fieldKey} className="flex items-center gap-3 opacity-50" key={fieldKey}>
+        <span className="whitespace-nowrap w-40">{label}</span>
+        <span>:</span>
+        <div className="flex flex-col w-full">
+          <input
+            id={fieldKey}
+            className="py-2 flex-1 rounded px-2 outline-none border border-primary cursor-not-allowed"
+            type={type}
+            {...register(fieldKey)}
+            placeholder={placeholder}
+            value={value}
+            readOnly
+          />
+          {error && <span className="text-red-500 text-sm">{error.message}</span>}
         </div>
-      );
-    }
+      </label>
+    );
+  }
+
+  
   
     
     if (type === "select") {
       return (
         <label className="flex items-center gap-3" htmlFor={fieldKey} key={fieldKey}>
-          <span className="whitespace-nowrap w-32">{label}</span>
+          <span className="whitespace-nowrap w-40">{label}</span>
           <span>:</span>
           <Select onValueChange={handleChange} defaultValue={formData[fieldKey]}>
             <SelectTrigger>
@@ -127,7 +168,7 @@ export default function FormField({ fieldKey, fieldSchema, register, setValue, f
   
     return (
       <label htmlFor={fieldKey} className="flex items-center gap-3" key={fieldKey}>
-        <span className="whitespace-nowrap w-32">{label}</span>
+        <span className="whitespace-nowrap w-40">{label}</span>
         <span>:</span>
         <div className="flex flex-col w-full">
           <input

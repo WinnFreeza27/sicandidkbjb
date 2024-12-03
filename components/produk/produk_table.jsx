@@ -3,6 +3,7 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import React from "react"
 import { Edit } from "lucide-react";
 import { Trash2 } from "lucide-react";
+import { Button } from "../ui/button";
 
   export default function ProdukTable({data, handleEdit, handleDelete}) {
     return (

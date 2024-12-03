@@ -10,7 +10,7 @@ export const rekeningBelanjaMainForm = create((set, get) => ({
     setMainForm: (data) => set((state) => ({ mainForm: { ...state.mainForm, ...data } })),
     clearMainForm: () =>
         set(() => ({
-            mainForm: { "kode-rekening": "", "uraian": "", "saldo": '0' },
+            mainForm: { "kode_rekening": "", "uraian": "", "saldo": '0' },
         })),
     getMainForm: () => get().mainForm, // Function to retrieve the updated state
 }));
@@ -30,7 +30,7 @@ export const rekeningBelanjaDetailForm = create((set) => ({
 
 export const rekeningBelanjaTable = create((set) => ({
     rekeningTable: [],
-    rekeningPagination: { page: 1, limit: 2, total: 0 },
+    rekeningPagination: { page: 1, limit: 5, total: 0 },
 
     setRekeningTable: (data) =>
         set((state) => {
