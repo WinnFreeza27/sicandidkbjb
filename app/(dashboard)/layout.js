@@ -1,4 +1,4 @@
-import NavigationSidebar from "@/components/Sidebar";
+import NavigationSidebar from "@/components/navigationSidebar";
 
 export default function DashboardGroupLayout({ children }) {
   return (
