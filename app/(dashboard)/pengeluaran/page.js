@@ -263,7 +263,7 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
                           className="absolute cursor-pointer right-3 top-3"
                           onClick={() => setPenerimaanDialog(false)}
                       />
-                      <form className="flex flex-col gap-4 relative text-sm">
+                      <form className="flex flex-col gap-4 relative">
                           <DynamicForm
                               schema={schema}
                               formData={pengeluaranForm}

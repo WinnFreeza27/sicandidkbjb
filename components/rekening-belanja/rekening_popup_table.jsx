@@ -46,7 +46,7 @@ export default function TableRekeningPopup ({tableData, handleEditRincian, handl
                                   variant="ghost"
                                   size="icon"
                                   onClick={() => handleEditRincian(detail.uuid)}
-                                  className="bg-red-400 text-white hover:bg-red-500 rounded-sm"
+                                  className="bg-teal-400 text-white hover:bg-teal-500 rounded-sm"
                                 >
                                   <Edit className="h-4 w-4" />
                                 </Button>
@@ -54,7 +54,7 @@ export default function TableRekeningPopup ({tableData, handleEditRincian, handl
                                   variant="ghost"
                                   size="icon"
                                   onClick={() => handleDeleteRincian(detail.uuid)}
-                                  className="bg-teal-400 text-white hover:bg-teal-500 rounded-sm"
+                                  className="bg-red-400 text-white hover:bg-red-500 rounded-sm"
                                 >
                                   <Trash2 className="h-4 w-4" />
                                 </Button>

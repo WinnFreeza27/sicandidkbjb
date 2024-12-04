@@ -36,7 +36,7 @@ import { Button } from "../ui/button";
                                   variant="ghost"
                                   size="icon"
                                   onClick={() => handleEdit(item.uuid)}
-                                  className="bg-red-400 text-white hover:bg-red-500 rounded-sm"
+                                  className="bg-teal-400 text-white hover:bg-teal-500 rounded-sm"
                                 >
                                   <Edit className="h-4 w-4" />
                                 </Button>
@@ -44,7 +44,7 @@ import { Button } from "../ui/button";
                                   variant="ghost"
                                   size="icon"
                                   onClick={() => handleDelete(item.uuid)}
-                                  className="bg-teal-400 text-white hover:bg-teal-500 rounded-sm"
+                                  className="bg-red-400 text-white hover:bg-red-500 rounded-sm"
                                 >
                                   <Trash2 className="h-4 w-4" />
                                 </Button>

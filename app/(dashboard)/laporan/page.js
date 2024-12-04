@@ -12,194 +12,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
-
-const penerimaanData = [
-  {
-      "uuid": "d95c34e5-9879-4f4e-8fdf-b4fc1e455534",
-      "nama_produk": {
-          "nama_produk": "Makan",
-          "kode_barang": "1.7.5.9",
-          "harga": "25000",
-          "uuid": "8cd825e4-7699-48d4-81ca-531f8d43d242"
-      },
-      "rekening_belanja": {
-          "kode_rekening": "1.2.5.6.7",
-          "uraian": "Belanja Makmin Rapat",
-          "saldo": "500000",
-          "details": [
-              {
-                  "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-                  "volume": "15",
-                  "satuan": "Kotak",
-                  "harga_satuan": "25000",
-                  "nama_rincian": "Makan",
-                  "jumlah": 375000
-              }
-          ],
-          "uuid": "6a3fa098-e18f-4188-b419-12e9b59e4490"
-      },
-      "rincian": {
-          "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-          "volume": "15",
-          "satuan": "Kotak",
-          "harga_satuan": "25000",
-          "nama_rincian": "Makan",
-          "jumlah": 375000
-      },
-      "volume_terima": "15",
-      "tanggal_terima": "2024-12-05",
-      "volume_awal": "0"
-  },
-  {
-    "uuid": "d95c34e5-9879-4f4e-8fdf-b4fc1e455534",
-    "nama_produk": {
-        "nama_produk": "Makan",
-        "kode_barang": "1.7.5.9",
-        "harga": "25000",
-        "uuid": "8cd825e4-7699-48d4-81ca-531f8d43d242"
-    },
-    "rekening_belanja": {
-        "kode_rekening": "1.2.5.6.7",
-        "uraian": "Belanja Makmin Rapat",
-        "saldo": "500000",
-        "details": [
-            {
-                "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-                "volume": "15",
-                "satuan": "Kotak",
-                "harga_satuan": "25000",
-                "nama_rincian": "Makan",
-                "jumlah": 375000
-            }
-        ],
-        "uuid": "6a3fa098-e18f-4188-b419-12e9b59e4490"
-    },
-    "rincian": {
-        "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-        "volume": "15",
-        "satuan": "Kotak",
-        "harga_satuan": "25000",
-        "nama_rincian": "Makan",
-        "jumlah": 375000
-    },
-    "volume_terima": "30",
-    "tanggal_terima": "2024-12-03",
-    "volume_awal": "0"
-},
-{
-  "uuid": "d95c34e5-9879-4f4e-8fdf-b4fc1e455534",
-  "nama_produk": {
-      "nama_produk": "Makan",
-      "kode_barang": "1.7.5.9",
-      "harga": "25000",
-      "uuid": "8cd825e4-7699-48d4-81ca-531f8d43d242"
-  },
-  "rekening_belanja": {
-      "kode_rekening": "1.2.5.6.7",
-      "uraian": "Belanja Makmin Rapat",
-      "saldo": "500000",
-      "details": [
-          {
-              "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-              "volume": "15",
-              "satuan": "Kotak",
-              "harga_satuan": "25000",
-              "nama_rincian": "Makan",
-              "jumlah": 375000
-          }
-      ],
-      "uuid": "6a3fa098-e18f-4188-b419-12e9b59e4490"
-  },
-  "rincian": {
-      "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-      "volume": "20",
-      "satuan": "Kotak",
-      "harga_satuan": "25000",
-      "nama_rincian": "Makan",
-      "jumlah": 375000
-  },
-  "volume_terima": "15",
-  "tanggal_terima": "2024-11-03",
-  "volume_awal": "0"
-},
-
-]
-
-const pengeluaranData = [
-  {
-      "nama_produk": {
-          "nama_produk": "Makan",
-          "kode_barang": "1.7.5.9",
-          "harga": "25000",
-          "uuid": "8cd825e4-7699-48d4-81ca-531f8d43d242",
-          "volume": "15",
-          "stock_uuid": "d95c34e5-9879-4f4e-8fdf-b4fc1e455534"
-      },
-      "rekening_belanja": "Belanja Makmin Rapat",
-      "kode_belanja": "1.2.5.6.7",
-      "rincian": "Makan",
-      "volume_keluar": "10",
-      "tanggal_keluar": "2024-12-06",
-      "volume_awal": "15",
-      "uuid": "52e2ea6a-4ecf-402e-a102-b20915af4e4c"
-  },
-  {
-      "nama_produk": {
-          "nama_produk": "Makan",
-          "kode_barang": "1.7.5.9",
-          "harga": "25000",
-          "uuid": "8cd825e4-7699-48d4-81ca-531f8d43d242",
-          "volume": "15",
-          "stock_uuid": "d95c34e5-9879-4f4e-8fdf-b4fc1e455534"
-      },
-      "rekening_belanja": "Belanja Makmin Rapat",
-      "kode_belanja": "1.2.5.6.7",
-      "rincian": "Makan",
-      "volume_keluar": "10",
-      "tanggal_keluar": "2024-11-06",
-      "volume_awal": "15",
-      "uuid": "52e2ea6a-4ecf-402e-a102-b20915af4e4c"
-  }
-]
-
-const stock = [
-  {
-      "uuid": "d95c34e5-9879-4f4e-8fdf-b4fc1e455534",
-      "nama_produk": {
-          "nama_produk": "Makan",
-          "kode_barang": "1.7.5.9",
-          "harga": "25000",
-          "uuid": "8cd825e4-7699-48d4-81ca-531f8d43d242"
-      },
-      "rekening_belanja": {
-          "kode_rekening": "1.2.5.6.7",
-          "uraian": "Belanja Makmin Rapat",
-          "saldo": "500000",
-          "details": [
-              {
-                  "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-                  "volume": "15",
-                  "satuan": "Kotak",
-                  "harga_satuan": "25000",
-                  "nama_rincian": "Makan",
-                  "jumlah": 375000
-              }
-          ],
-          "uuid": "6a3fa098-e18f-4188-b419-12e9b59e4490"
-      },
-      "rincian": {
-          "uuid": "40a4ee53-b7cc-48a8-9aa9-c421db61c2b1",
-          "volume": "15",
-          "satuan": "Kotak",
-          "harga_satuan": "25000",
-          "nama_rincian": "Makan",
-          "jumlah": 375000
-      },
-      "volume": "5"
-  }
-]
+import { usePenerimaanTable } from "@/hook/use_penerimaan_store"
+import { usePengeluaranTable } from "@/hook/use_pengeluaran_store"
+import { useStockStore } from "@/hook/use_stock_store"
 
 export default function Laporan() {
+
+  const {penerimaanTable: penerimaanData} = usePenerimaanTable()
+  const {pengeluaranTable: pengeluaranData} = usePengeluaranTable()
+  const {stock} = useStockStore()
+
   const [date, setDate] = useState({
     from: addDays(new Date(), -7),
     to: new Date(),
@@ -223,78 +45,101 @@ export default function Laporan() {
   }, [date])
 
   useEffect(() => {
+    // If no valid data or date range, reset mergedStock to an empty array
+    if (
+      !dataTrack.penerimaan.length || 
+      !dataTrack.pengeluaran.length || 
+      !date?.from || 
+      !date?.to
+    ) {
+      setMergedStock([]);
+      return;
+    }
+  
     // Generate a list of months within the date range
     const monthRange = eachMonthOfInterval({
       start: startOfMonth(date.from),
       end: endOfMonth(date.to),
     });
   
-    const updatedStock = stock.map((item) => {
-      let runningTotal = 0; // Initialize running total for volume_total
+    const updatedStock = stock
+      .map((item) => {
+        let runningTotal = 0; // Initialize running total for volume_total
   
-      const monthlyData = monthRange.map((month, index) => {
-        const startOfMonthDate = startOfMonth(month);
-        const endOfMonthDate = endOfMonth(month);
+        const monthlyData = monthRange
+          .map((month) => {
+            const startOfMonthDate = startOfMonth(month);
+            const endOfMonthDate = endOfMonth(month);
   
-        // Filter penerimaan data for the current month
-        const monthlyPenerimaan = dataTrack.penerimaan.filter(
-          (p) =>
-            p.nama_produk.uuid === item.nama_produk.uuid &&
-            new Date(p.tanggal_terima) >= startOfMonthDate &&
-            new Date(p.tanggal_terima) <= endOfMonthDate
-        );
+            // Filter penerimaan data for the current month
+            const monthlyPenerimaan = dataTrack.penerimaan.filter(
+              (p) =>
+                p.nama_produk.uuid === item.nama_produk.uuid &&
+                new Date(p.tanggal_terima) >= startOfMonthDate &&
+                new Date(p.tanggal_terima) <= endOfMonthDate
+            );
   
-        // Filter pengeluaran data for the current month
-        const monthlyPengeluaran = dataTrack.pengeluaran.filter(
-          (p) =>
-            p.nama_produk.uuid === item.nama_produk.uuid &&
-            new Date(p.tanggal_keluar) >= startOfMonthDate &&
-            new Date(p.tanggal_keluar) <= endOfMonthDate
-        );
+            // Filter pengeluaran data for the current month
+            const monthlyPengeluaran = dataTrack.pengeluaran.filter(
+              (p) =>
+                p.nama_produk.uuid === item.nama_produk.uuid &&
+                new Date(p.tanggal_keluar) >= startOfMonthDate &&
+                new Date(p.tanggal_keluar) <= endOfMonthDate
+            );
   
-        const totalVolumeTerima = monthlyPenerimaan.reduce(
-          (sum, p) => sum + Number(p.volume_terima),
+            const totalVolumeTerima = monthlyPenerimaan.reduce(
+              (sum, p) => sum + Number(p.volume_terima),
+              0
+            );
+            const totalVolumeKeluar = monthlyPengeluaran.reduce(
+              (sum, p) => sum + Number(p.volume_keluar),
+              0
+            );
+  
+            // If both totalVolumeTerima and totalVolumeKeluar are 0 or less, skip updating
+            if (totalVolumeTerima <= 0 && totalVolumeKeluar <= 0) {
+              return null; // Skip this month's data
+            }
+  
+            // Calculate current month's volume_total
+            const currentMonthVolumeTotal =
+              totalVolumeTerima - totalVolumeKeluar;
+  
+            // Update running total with current month's data
+            runningTotal += currentMonthVolumeTotal;
+  
+            return {
+              month: format(month, "yyyy-MM"),
+              total_volume_terima: totalVolumeTerima,
+              total_volume_keluar: totalVolumeKeluar,
+              volume_total: runningTotal,
+            };
+          })
+          .filter(Boolean); // Remove null values
+  
+        if (monthlyData.length === 0) return null; // Skip items with no valid monthly data
+  
+        const totalVolumeTerima = monthlyData.reduce(
+          (sum, month) => sum + month.total_volume_terima,
           0
         );
-        const totalVolumeKeluar = monthlyPengeluaran.reduce(
-          (sum, p) => sum + Number(p.volume_keluar),
+        const totalVolumeKeluar = monthlyData.reduce(
+          (sum, month) => sum + month.total_volume_keluar,
           0
         );
-  
-        // Calculate current month's volume_total
-        const currentMonthVolumeTotal =
-          totalVolumeTerima - totalVolumeKeluar;
-  
-        // Update running total with current month's data
-        runningTotal += currentMonthVolumeTotal;
   
         return {
-          month: format(month, "yyyy-MM"),
+          ...item,
           total_volume_terima: totalVolumeTerima,
           total_volume_keluar: totalVolumeKeluar,
-          volume_total: runningTotal, // Add volume_total here
+          monthly_data: monthlyData,
         };
-      });
-  
-      const totalVolumeTerima = monthlyData.reduce(
-        (sum, month) => sum + month.total_volume_terima,
-        0
-      );
-      const totalVolumeKeluar = monthlyData.reduce(
-        (sum, month) => sum + month.total_volume_keluar,
-        0
-      );
-  
-      return {
-        ...item,
-        total_volume_terima: totalVolumeTerima,
-        total_volume_keluar: totalVolumeKeluar,
-        monthly_data: monthlyData, // Include volume_total per month
-      };
-    });
+      })
+      .filter(Boolean); // Remove null values
   
     setMergedStock(updatedStock);
   }, [dataTrack, date]);
+  
   
     
 
