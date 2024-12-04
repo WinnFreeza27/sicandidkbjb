@@ -245,6 +245,11 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
       setPenerimaanDialog(false);
       clearPengeluaranForm();
   };
+  console.log("PENGELUARAN DATA")
+  console.log(pengeluaranTable)
+
+  console.log("STOCK")
+  console.log(stock)
 
   return (
       <div className="overflow-auto">

@@ -267,6 +267,9 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
     clearPenerimaanForm();
   };
 
+  console.log('PENERIMAAN DATA!')
+  console.log(penerimaanTable)
+
   return (
     <AlertDialog open={penerimaanDialog} onOpenChange={setPenerimaanDialog}>
       <AlertDialogContent className="bg-white text-accentdarken h-screen overflow-auto">
