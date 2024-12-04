@@ -247,9 +247,9 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
   };
 
   return (
-      <>
-          <AlertDialog open={penerimaanDialog} onOpenChange={setPenerimaanDialog}>
-              <AlertDialogContent className="bg-white text-accentdarken">
+      <div className="overflow-auto">
+          <AlertDialog open={penerimaanDialog} onOpenChange={setPenerimaanDialog} className="overflow-scroll">
+              <AlertDialogContent className="bg-white text-accentdarken h-screen overflow-auto">
                   <AlertDialogHeader>
                       <AlertDialogTitle className="mx-auto mb-5">
                           {editIndex ? "Edit Pengeluaran" : "Tambah Pengeluaran"}
@@ -258,7 +258,7 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
                           className="absolute cursor-pointer right-3 top-3"
                           onClick={() => setPenerimaanDialog(false)}
                       />
-                      <form className="flex flex-col gap-4 relative">
+                      <form className="flex flex-col gap-4 relative text-sm">
                           <DynamicForm
                               schema={schema}
                               formData={pengeluaranForm}
@@ -273,7 +273,7 @@ export function PenerimaanPopup({ penerimaanDialog, setPenerimaanDialog, editInd
                   </AlertDialogHeader>
               </AlertDialogContent>
           </AlertDialog>
-      </>
+      </div>
   );
 }
 
