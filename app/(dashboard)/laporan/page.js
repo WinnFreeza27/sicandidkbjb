@@ -23,7 +23,7 @@ export default function Laporan() {
   const {stock} = useStockStore()
 
   const [date, setDate] = useState({
-    from: addDays(new Date(), -7),
+    from: addDays(new Date(), -30),
     to: new Date(),
   })
 
@@ -239,7 +239,7 @@ export default function Laporan() {
       </div>
       <div className="mx-auto py-10 w-full overflow-auto">
         {mergedStock.length == 0 ? (
-            <div className="text-center">Tidak Ada Data</div>
+            <div className="text-center">Tidak Ada Data Laporan Pada Periode Tanggal Tersebut.</div>
         ) : (
           <Table className="w-max">
             <TableHeader>
